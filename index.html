@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>MADEV Promo Rotator</title>
+
+    <style>
+      /* =====================================================
+           BASE
+        ===================================================== */
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+
+        width: 100%;
+        height: 100%;
+
+        overflow: hidden;
+
+        background: transparent !important;
+
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: flex-start;
+      }
+
+      /* =====================================================
+           CONTENEUR
+        ===================================================== */
+
+      #promo-container {
+        position: relative;
+
+        width: 520px;
+
+        height: 125px;
+      }
+
+      /* =====================================================
+           CARTE PROMOTIONNELLE
+        ===================================================== */
+
+      .promo {
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 500px;
+
+        min-height: 115px;
+
+        display: flex;
+
+        /* Fond */
+
+        background: rgba(10, 12, 18, 0.94);
+
+        /* Bordure */
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-radius: 14px;
+
+        overflow: hidden;
+
+        /* Ombre */
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+        /* =============================
+               CACHÉ PAR DÉFAUT
+            ============================= */
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transform: translateX(-550px);
+
+        transition:
+          transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.5s ease;
+      }
+
+      /* =====================================================
+           CARTE VISIBLE
+        ===================================================== */
+
+      .promo.show {
+        opacity: 1;
+
+        visibility: visible;
+
+        transform: translateX(0);
+      }
+
+      /* =====================================================
+           BARRE GAUCHE
+        ===================================================== */
+
+      .accent {
+        width: 5px;
+
+        flex-shrink: 0;
+
+        background: linear-gradient(180deg, #ffffff, #777777);
+      }
+
+      /* =====================================================
+           CONTENU
+        ===================================================== */
+
+      .promo-content {
+        width: 100%;
+
+        padding: 17px 20px;
+      }
+
+      .promo-top {
+        display: flex;
+
+        align-items: center;
+      }
+
+      /* =====================================================
+           ICONE
+        ===================================================== */
+
+      .icon {
+        width: 42px;
+
+        height: 42px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        margin-right: 14px;
+
+        border-radius: 10px;
+
+        background: rgba(255, 255, 255, 0.08);
+
+        color: white;
+
+        font-size: 22px;
+
+        flex-shrink: 0;
+      }
+
+      /* =====================================================
+           TITRES
+        ===================================================== */
+
+      .titles {
+        min-width: 0;
+      }
+
+      .title {
+        color: white;
+
+        font-size: 20px;
+
+        font-weight: 800;
+
+        letter-spacing: 1.5px;
+      }
+
+      .subtitle {
+        margin-top: 3px;
+
+        color: #a7adb8;
+
+        font-size: 13px;
+
+        font-weight: 500;
+      }
+
+      /* =====================================================
+           PARTIE BASSE
+        ===================================================== */
+
+      .promo-bottom {
+        margin-top: 13px;
+
+        padding-top: 10px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      /* =====================================================
+           URL
+        ===================================================== */
+
+      .url {
+        color: white;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        letter-spacing: 0.3px;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        max-width: 410px;
+      }
+
+      /* =====================================================
+           FLÈCHE
+        ===================================================== */
+
+      .arrow {
+        color: white;
+
+        font-size: 18px;
+
+        opacity: 0.7;
+      }
+
+      /* =====================================================
+           ANIMATION ICONE
+        ===================================================== */
+
+      .promo.show .icon {
+        animation: iconPop 0.7s ease;
+      }
+
+      @keyframes iconPop {
+        0% {
+          transform: scale(0.6);
+
+          opacity: 0;
+        }
+
+        60% {
+          transform: scale(1.1);
+        }
+
+        100% {
+          transform: scale(1);
+
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+     CONTENEUR DES PROMOTIONS
+========================================================= -->
+
+    <div id="promo-container">
+      <!-- =====================================================
+         1 — QUIZLAB
+    ====================================================== -->
+
+      <div class="promo" id="promo-quizlab">
+        <div class="accent"></div>
+
+        <div class="promo-content">
+          <div class="promo-top">
+            <span class="icon"> ◈ </span>
+
+            <div class="titles">
+              <div class="title">QUIZLAB</div>
+
+              <div class="subtitle">
+                Teste tes connaissances &amp; défie tes amis
+              </div>
+            </div>
+          </div>
+
+          <div class="promo-bottom">
+            <span class="url"> quizlab-challenge.netlify.app </span>
+
+            <span class="arrow"> → </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================
+         2 — BOUTIQUE
+    ====================================================== -->
+
+      <div class="promo" id="promo-boutique">
+        <div class="accent"></div>
+
+        <div class="promo-content">
+          <div class="promo-top">
+            <span class="icon"> ◆ </span>
+
+            <div class="titles">
+              <div class="title">MA BOUTIQUE</div>
+
+              <div class="subtitle">
+                Découvre ma sélection gaming &amp; streaming
+              </div>
+            </div>
+          </div>
+
+          <div class="promo-bottom">
+            <span class="url"> mad3v-prod.netlify.app/boutique/boutique </span>
+
+            <span class="arrow"> → </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================
+         3 — CONTACT
+    ====================================================== -->
+
+      <div class="promo" id="promo-contact">
+        <div class="accent"></div>
+
+        <div class="promo-content">
+          <div class="promo-top">
+            <span class="icon"> ✉ </span>
+
+            <div class="titles">
+              <div class="title">CONTACT</div>
+
+              <div class="subtitle">Collaboration • Projet • Partenariat</div>
+            </div>
+          </div>
+
+          <div class="promo-bottom">
+            <span class="url"> mad3v-prod.netlify.app/contact </span>
+
+            <span class="arrow"> → </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================
+         4 — SITE / RÉSEAUX
+    ====================================================== -->
+
+      <div class="promo" id="promo-site">
+        <div class="accent"></div>
+
+        <div class="promo-content">
+          <div class="promo-top">
+            <span class="icon"> ● </span>
+
+            <div class="titles">
+              <div class="title">MADEV PRODUCTION</div>
+
+              <div class="subtitle">
+                Retrouve mes projets, mon setup &amp; mes réseaux
+              </div>
+            </div>
+          </div>
+
+          <div class="promo-bottom">
+            <span class="url"> mad3v-prod.netlify.app </span>
+
+            <span class="arrow"> → </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================
+         5 — DONATION
+    ====================================================== -->
+
+      <div class="promo" id="promo-donation">
+        <div class="accent"></div>
+
+        <div class="promo-content">
+          <div class="promo-top">
+            <span class="icon"> ♥ </span>
+
+            <div class="titles">
+              <div class="title">SOUTIENS LE STREAM</div>
+
+              <div class="subtitle">
+                Tu apprécies le contenu ? Soutiens l'aventure !
+              </div>
+            </div>
+          </div>
+
+          <div class="promo-bottom">
+            <span class="url"> streamelements.com/mad3v_live/tip </span>
+
+            <span class="arrow"> → </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ============================================================
+   MADEV PROMO ROTATOR
+============================================================ */
+
+      /*
+
+    FONCTIONNEMENT :
+
+    Au chargement :
+
+    QUIZLAB
+       ↓
+    BOUTIQUE
+       ↓
+    CONTACT
+       ↓
+    MADEV PRODUCTION
+       ↓
+    DONATION
+       ↓
+    DISPARITION
+
+
+    Puis la séquence complète
+    recommence toutes les 4 minutes.
+
+*/
+
+      /* ============================================================
+   RÉCUPÉRATION DES 5 CARTES
+============================================================ */
+
+      const promos = [
+        document.getElementById("promo-quizlab"),
+
+        document.getElementById("promo-boutique"),
+
+        document.getElementById("promo-contact"),
+
+        document.getElementById("promo-site"),
+
+        document.getElementById("promo-donation"),
+      ];
+
+      /* ============================================================
+   CONFIGURATION
+============================================================ */
+
+      /*
+
+    DURÉE D'AFFICHAGE
+    D'UNE CARTE
+
+    7000 ms
+    =
+    7 secondes
+
+*/
+
+      const DISPLAY_TIME = 7000;
+
+      /*
+
+    PETITE PAUSE
+    ENTRE DEUX CARTES
+
+    1000 ms
+    =
+    1 seconde
+
+*/
+
+      const TRANSITION_TIME = 1000;
+
+      /*
+
+    INTERVALLE ENTRE
+    CHAQUE SÉQUENCE COMPLÈTE
+
+    4 minutes
+
+*/
+
+      const CYCLE_INTERVAL = 4 * 60 * 1000;
+
+      /* ============================================================
+   ÉTAT
+============================================================ */
+
+      let sequenceRunning = false;
+
+      /* ============================================================
+   FONCTION ATTENTE
+============================================================ */
+
+      function wait(ms) {
+        return new Promise(function (resolve) {
+          setTimeout(resolve, ms);
+        });
+      }
+
+      /* ============================================================
+   CACHER TOUTES LES CARTES
+============================================================ */
+
+      function hideAllPromos() {
+        promos.forEach(function (promo) {
+          promo.classList.remove("show");
+        });
+      }
+
+      /* ============================================================
+   JOUER LA SÉQUENCE COMPLÈTE
+============================================================ */
+
+      async function playPromoSequence() {
+        /*
+
+        Empêche deux séquences
+        de fonctionner simultanément.
+
+    */
+
+        if (sequenceRunning) {
+          return;
+        }
+
+        sequenceRunning = true;
+
+        /*
+
+        On s'assure qu'aucune
+        carte n'est visible.
+
+    */
+
+        hideAllPromos();
+
+        /* ========================================================
+       BOUCLE SUR LES 5 CARTES
+    ======================================================== */
+
+        for (let i = 0; i < promos.length; i++) {
+          const promo = promos[i];
+
+          /* ===============================================
+           APPARITION
+        =============================================== */
+
+          promo.classList.add("show");
+
+          /* ===============================================
+           RESTE VISIBLE 7 SECONDES
+        =============================================== */
+
+          await wait(DISPLAY_TIME);
+
+          /* ===============================================
+           DISPARITION
+        =============================================== */
+
+          promo.classList.remove("show");
+
+          /* ===============================================
+           PAUSE AVANT LA CARTE SUIVANTE
+        =============================================== */
+
+          if (i < promos.length - 1) {
+            await wait(TRANSITION_TIME);
+          }
+        }
+
+        /* ========================================================
+       FIN DE LA SÉQUENCE
+    ======================================================== */
+
+        hideAllPromos();
+
+        sequenceRunning = false;
+      }
+
+      /* ============================================================
+   LANCEMENT IMMÉDIAT
+============================================================ */
+
+      /*
+
+    Dès que le widget est chargé :
+
+    QuizLab
+    Boutique
+    Contact
+    Site
+    Donation
+
+*/
+
+      playPromoSequence();
+
+      /* ============================================================
+   RELANCE AUTOMATIQUE
+============================================================ */
+
+      /*
+
+    Toutes les 4 minutes :
+
+    on rejoue toute la séquence.
+
+*/
+
+      setInterval(
+        function () {
+          playPromoSequence();
+        },
+
+        CYCLE_INTERVAL,
+      );
+    </script>
+  </body>
+</html>
